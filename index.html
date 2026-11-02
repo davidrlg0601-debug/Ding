@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ding – aprende as palavras que ligam o inglês</title>
+<style>
+:root{--lg-spring:cubic-bezier(.34,1.56,.64,1);--or:#ff7a14;--be:#f3e4cb;--bk:#0b0806}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bk);color:var(--be);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,"Segoe UI",system-ui,sans-serif;overflow-x:hidden;line-height:1.5}
+button{font:inherit;color:inherit;border:0;cursor:pointer;background:none}
+main{position:relative;z-index:1}
+section{max-width:1100px;margin:0 auto;padding:90px 22px 40px}
+/* fundo */
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(60% 50% at 85% 10%,rgba(255,122,20,.22),transparent 70%),#0b0806}
+.bg i{position:absolute;display:block}
+.lines{inset:0;background:repeating-linear-gradient(115deg,rgba(243,228,203,.09) 0 1px,transparent 1px 44px)}
+/* vidro */
+.glass{position:relative;border-radius:999px;color:#fff;background:rgba(255,255,255,.09);-webkit-backdrop-filter:blur(10px) saturate(1.7) brightness(1.08);backdrop-filter:blur(10px) saturate(1.7) brightness(1.08);box-shadow:0 12px 32px rgba(8,8,40,.24),0 2px 6px rgba(8,8,40,.14),inset 0 1px 1px rgba(255,255,255,.6),inset 0 -1px 1px rgba(255,255,255,.2),inset 0 0 24px rgba(255,255,255,.1);transition:transform .5s var(--lg-spring),box-shadow .3s,background .3s;text-shadow:0 1px 3px rgba(0,0,0,.3)}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;background:radial-gradient(120% 120% at var(--mx,30%) var(--my,0%),rgba(255,255,255,.3),rgba(255,255,255,0) 55%)}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.4px;z-index:2;pointer-events:none;background:linear-gradient(var(--ang,135deg),rgba(255,255,255,.95) 0%,rgba(255,255,255,.12) 28%,rgba(255,255,255,0) 50%,rgba(255,255,255,.12) 72%,rgba(255,255,255,.8) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.no-refract .glass{background:rgba(255,255,255,.14)}
+.btn:hover{transform:scale(1.03)}
+.btn:active{transform:scale(1.08)}
+.glass:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.t-o{background:rgba(255,122,20,.5)}.t-d{background:rgba(10,6,3,.4)}
+.ok{background:rgba(52,199,89,.5)}.no{background:rgba(255,69,58,.5)}
+.ic{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;display:block}
+/* controlo segmentado: pista plana, indicador de vidro */
+.seg{position:relative;display:flex;gap:2px;padding:5px;border-radius:999px;background:rgba(20,13,8,.55);box-shadow:inset 0 1px 3px rgba(0,0,0,.5),inset 0 0 0 1px rgba(243,228,203,.14);overflow-x:auto;scrollbar-width:none;max-width:100%}
+.seg button,.seg a{position:relative;z-index:1;padding:10px 18px;border-radius:999px;color:rgba(255,240,220,.72);font-weight:600;font-size:15px;white-space:nowrap;text-decoration:none;transition:color .3s}
+.seg .on{color:#fff}
+.seg .ind{position:absolute;left:0;top:5px;height:calc(100% - 10px);z-index:0;pointer-events:none;background:rgba(255,122,20,.42);transition:transform .5s var(--lg-spring),width .35s}
+/* nav */
+.nav{position:fixed;top:14px;left:0;right:0;z-index:10;display:flex;justify-content:center;gap:10px;padding:0 12px;pointer-events:none}
+.nav>*{pointer-events:auto}
+.brand{display:flex;align-items:center;gap:8px;padding:0 20px 0 16px;border-radius:999px;background:rgba(18,12,8,.78);box-shadow:inset 0 0 0 1px rgba(243,228,203,.14);font-weight:800;font-size:20px;letter-spacing:-.02em}
+.brand .ic{color:var(--or)}
+.nav .seg{background:rgba(18,12,8,.78)}
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center;min-height:100vh}
+h1{font-size:clamp(44px,7vw,84px);line-height:.98;letter-spacing:-.045em;font-weight:850}
+h1 em{font-style:normal;color:var(--or)}
+.hero p{max-width:460px;margin:22px 0 30px;font-size:19px;color:rgba(243,228,203,.82)}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.cta .glass{padding:16px 28px;font-weight:700;font-size:17px}
+.stage{position:relative;height:460px}
+.stage i{position:absolute}
+.sun{width:300px;height:300px;left:50%;top:50%;margin:-150px 0 0 -150px;border-radius:50%;background:linear-gradient(140deg,#ffb15c,#e8590c)}
+.lens{position:absolute;left:50%;top:50%;width:190px;height:190px;margin:-95px 0 0 -95px;display:grid;place-items:center;font-size:44px;font-weight:850;letter-spacing:-.04em}
+/* títulos */
+h2{font-size:clamp(34px,5vw,56px);letter-spacing:-.04em;line-height:1;margin-bottom:12px}
+.sub{max-width:520px;color:rgba(243,228,203,.78);margin-bottom:26px;font-size:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;margin-top:28px}
+.card{border-radius:34px;padding:22px;display:flex;flex-direction:column;gap:6px}
+.row{display:flex;justify-content:space-between;align-items:center}
+.tag{padding:3px 12px;border-radius:99px;background:rgba(10,6,3,.4);font-size:13px;font-weight:600}
+.spk{width:38px;height:38px;border-radius:50%;background:rgba(10,6,3,.4);display:grid;place-items:center;transition:transform .4s var(--lg-spring)}
+.w{font-size:36px;font-weight:850;letter-spacing:-.03em;line-height:1.1;margin-top:8px}
+.pt{color:#ffd9a8;font-weight:600}
+.ex{margin-top:10px;padding:12px 14px;border-radius:20px;background:rgba(10,6,3,.32);font-size:15px}
+.ex b{color:#ffc27a}.ex small{display:block;margin-top:4px;opacity:.8}
+#cats button{padding:10px 14px;font-size:14px}
+.tbl{border-radius:28px;padding:8px 6px;background:rgba(18,12,8,.6);box-shadow:inset 0 0 0 1px rgba(243,228,203,.14);overflow-x:auto;margin-top:28px}
+.tr{display:grid;grid-template-columns:repeat(4,1fr);min-width:480px;padding:11px 18px;border-bottom:1px solid rgba(243,228,203,.08)}
+.tr:last-child{border:0}.tr.h{color:var(--or);font-weight:700}.tr b{color:#fff}
+/* quiz */
+.qp{position:relative;border-radius:44px;padding:34px;overflow:hidden;background:radial-gradient(70% 60% at 100% 0%,rgba(255,122,20,.5),transparent 70%),repeating-linear-gradient(115deg,rgba(243,228,203,.1) 0 1px,transparent 1px 30px),#17100a;box-shadow:inset 0 0 0 1px rgba(243,228,203,.16)}
+.top{display:flex;justify-content:space-between;align-items:center;font-weight:600;margin-bottom:14px}
+.top .glass{padding:6px 18px}
+.bar{height:8px;border-radius:9px;background:rgba(0,0,0,.4);overflow:hidden;margin-bottom:30px}
+.bar i{display:block;height:100%;background:var(--or);border-radius:9px;transition:width .5s var(--lg-spring)}
+.q{font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1.15}
+.blank{display:inline-block;min-width:110px;border-bottom:4px solid var(--or);color:var(--or);text-align:center}
+.hint{margin:10px 0 28px;color:rgba(243,228,203,.8)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.opt{padding:20px;font-size:21px;font-weight:700}
+.opt[disabled]{cursor:default}
+.fb{min-height:54px;margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.fb .glass{padding:14px 28px;font-weight:700}
+.end{text-align:center;padding:30px 0}.end .n{font-size:96px;font-weight:900;letter-spacing:-.05em;color:var(--or);line-height:1}
+.end p{margin:8px 0 26px;font-size:20px}
+footer{text-align:center;padding:50px 20px 60px;color:rgba(243,228,203,.55);position:relative;z-index:1}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:100px}.stage{height:380px;transform:scale(.85)}.opts{grid-template-columns:1fr}.brand span{display:none}.brand{padding:0 14px}.seg a{padding:10px 12px}.qp{padding:22px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="bg"><i class="lines"></i></div>
+
+<div class="nav">
+  <div class="brand"><svg class="ic" viewBox="0 0 24 24"><path d="M6 17h12l-1.5-2v-5a4.5 4.5 0 0 0-9 0v5z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span>Ding</span></div>
+  <nav class="seg" id="nav"><i class="ind glass"></i><a href="#inicio">Início</a><a href="#palavras">Palavras</a><a href="#gramatica">Gramática</a><a href="#quiz">Quiz</a></nav>
+</div>
+
+<main>
+<section id="inicio" class="hero">
+  <div>
+    <h1>As palavrinhas que <em>ligam</em> o inglês.</h1>
+    <p>Conectores como <b>while</b>, <b>because</b> ou <b>although</b> são pequenos, aparecem em todo o lado e fazem de duas ideias uma frase. Aprende-os com exemplos e testa-te no quiz.</p>
+    <div class="cta"><a class="glass btn t-o" href="#palavras" style="text-decoration:none">Ver as palavras</a><a class="glass btn t-d" href="#quiz" style="text-decoration:none">Fazer o quiz</a></div>
+  </div>
+  <div class="stage">
+    <i class="sun"></i>
+    <div class="lens glass" data-bezel="52">ding!</div>
+  </div>
+</section>
+
+<section id="palavras">
+  <h2>Palavras que ligam</h2>
+  <p class="sub">Escolhe um grupo. Toca no altifalante para ouvir a palavra e a frase.</p>
+  <div class="seg" id="cats"><i class="ind glass"></i></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section id="gramatica">
+  <h2>Gramática simples</h2>
+  <p class="sub">Os tempos mais usados e os verbos irregulares que tens mesmo de saber.</p>
+  <div class="seg" id="gtabs"><i class="ind glass"></i><button>Tempos verbais</button><button>Verbos irregulares</button></div>
+  <div id="gbox"></div>
+</section>
+
+<section id="quiz">
+  <h2>Quiz</h2>
+  <p class="sub">Escolhe a palavra que completa a frase. São 10 perguntas.</p>
+  <div class="qp" id="qp"></div>
+</section>
+</main>
+<footer>Ding · feito para quem quer falar inglês de verdade</footer>
+
+<script>
+(function () {
+  var canRefract = /Chrome|Chromium|Edg/.test(navigator.userAgent) && !/Firefox/.test(navigator.userAgent);
+  if (!canRefract) document.documentElement.classList.add('no-refract');
+  var NS = 'http://www.w3.org/2000/svg', uid = 0, defs = null, list = [];
+  function getDefs() {
+    if (defs) return defs;
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('width', '0'); svg.setAttribute('height', '0'); svg.style.position = 'absolute';
+    defs = document.createElementNS(NS, 'defs'); svg.appendChild(defs); document.body.appendChild(svg);
+    return defs;
+  }
+  function makeMap(w, h, r, bezel) {
+    var c = document.createElement('canvas'); c.width = w; c.height = h;
+    var ctx = c.getContext('2d'), img = ctx.createImageData(w, h), d = img.data, hx = w / 2, hy = h / 2;
+    for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+      var px = x + .5 - hx, py = y + .5 - hy, sx = Math.sign(px) || 1, sy = Math.sign(py) || 1;
+      var qx = Math.abs(px) - (hx - r), qy = Math.abs(py) - (hy - r);
+      var outside = Math.hypot(Math.max(qx, 0), Math.max(qy, 0));
+      var dist = -(outside + Math.min(Math.max(qx, qy), 0) - r);
+      var R = 128, G = 128;
+      if (dist >= 0 && dist < bezel) {
+        var mag = Math.pow(1 - dist / bezel, 2.4), nx, ny;
+        if (qx > 0 && qy > 0) { nx = sx * qx / outside; ny = sy * qy / outside; }
+        else if (qx > qy) { nx = sx; ny = 0; } else { nx = 0; ny = sy; }
+        R = 128 - nx * mag * 127; G = 128 - ny * mag * 127;
+      }
+      var i = (y * w + x) * 4; d[i] = R; d[i + 1] = G; d[i + 2] = 128; d[i + 3] = 255;
+    }
+    ctx.putImageData(img, 0, 0); return c.toDataURL();
+  }
+  function build(el) {
+    var w = el.offsetWidth, h = el.offsetHeight; if (!w || !h) return;
+    var blur = el.dataset.blur !== undefined ? el.dataset.blur : (canRefract ? 1.2 : 10);
+    if (!canRefract) { el.style.backdropFilter = el.style.webkitBackdropFilter = 'blur(' + blur + 'px) saturate(1.7) brightness(1.1)'; return; }
+    var r = Math.min(parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0, w / 2, h / 2);
+    var bezel = +el.dataset.bezel || Math.min(20, Math.min(w, h) * .46);
+    var scale = +el.dataset.scale || bezel * 1.7;
+    var id = el._fid || (el._fid = 'lg' + (++uid));
+    if (el._f) el._f.remove();
+    var f = document.createElementNS(NS, 'filter');
+    f.setAttribute('id', id); f.setAttribute('filterUnits', 'userSpaceOnUse');
+    f.setAttribute('x', 0); f.setAttribute('y', 0); f.setAttribute('width', w); f.setAttribute('height', h);
+    f.setAttribute('color-interpolation-filters', 'sRGB');
+    var im = document.createElementNS(NS, 'feImage');
+    im.setAttribute('href', makeMap(w, h, r, bezel)); im.setAttribute('x', 0); im.setAttribute('y', 0);
+    im.setAttribute('width', w); im.setAttribute('height', h); im.setAttribute('preserveAspectRatio', 'none'); im.setAttribute('result', 'map');
+    var dm = document.createElementNS(NS, 'feDisplacementMap');
+    dm.setAttribute('in', 'SourceGraphic'); dm.setAttribute('in2', 'map'); dm.setAttribute('scale', scale);
+    dm.setAttribute('xChannelSelector', 'R'); dm.setAttribute('yChannelSelector', 'G');
+    f.appendChild(im); f.appendChild(dm); getDefs().appendChild(f); el._f = f;
+    var v = 'url(#' + id + ') blur(' + blur + 'px) saturate(1.8) brightness(1.1)';
+    el.style.backdropFilter = v; el.style.webkitBackdropFilter = v;
+  }
+  var ro = new ResizeObserver(function (es) {
+    es.forEach(function (en) { clearTimeout(en.target._t); en.target._t = setTimeout(function () { build(en.target); }, 60); });
+  });
+  function init(root) {
+    (root || document).querySelectorAll('.glass').forEach(function (el) {
+      if (el._lg) return; el._lg = true; list.push(el); ro.observe(el); build(el);
+    });
+  }
+  var mx = 0, my = 0, raf = 0;
+  addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; if (!raf) raf = requestAnimationFrame(light); });
+  function light() {
+    raf = 0;
+    list = list.filter(function (el) { if (!el.isConnected) { if (el._f) el._f.remove(); return false; } return true; });
+    list.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > innerHeight + 200) return;
+      var ang = Math.atan2(mx - (r.left + r.width / 2), -(my - (r.top + r.height / 2))) * 180 / Math.PI;
+      el.style.setProperty('--ang', ang.toFixed(1) + 'deg');
+      el.style.setProperty('--mx', Math.max(-30, Math.min(130, (mx - r.left) / r.width * 100)) + '%');
+      el.style.setProperty('--my', Math.max(-30, Math.min(130, (my - r.top) / r.height * 100)) + '%');
+    });
+  }
+  window.LG = { init: init, build: build };
+})();
+
+/* ---------- dados ---------- */
+var CATS = [
+ ['Tempo', ['while|enquanto|I read while she cooks.|Eu leio enquanto ela cozinha.','when|quando|Call me when you arrive.|Liga-me quando chegares.','before|antes de|Wash your hands before you eat.|Lava as mãos antes de comer.','after|depois de|We talked after the class.|Falámos depois da aula.','until|até (que)|Stay here until I come back.|Fica aqui até eu voltar.','as soon as|assim que|I\'ll text you as soon as I land.|Mando-te mensagem assim que aterrar.']],
+ ['Contraste', ['but|mas|I like tea, but I prefer coffee.|Gosto de chá, mas prefiro café.','although|embora|Although it rained, we went out.|Embora chovesse, saímos.','however|no entanto|It\'s cheap. However, it\'s slow.|É barato. No entanto, é lento.','though|embora / apesar de|It\'s good, though a bit long.|É bom, embora um pouco longo.','whereas|ao passo que|He is shy, whereas she is loud.|Ele é tímido, ao passo que ela é faladora.']],
+ ['Causa e efeito', ['because|porque|I\'m late because the bus broke down.|Estou atrasado porque o autocarro avariou.','so|por isso|I was hungry, so I ate.|Tinha fome, por isso comi.','since|como / desde que|Since it\'s late, let\'s go.|Como é tarde, vamos embora.','therefore|portanto|He studied; therefore, he passed.|Estudou; portanto, passou.','as|como / porque|As I was tired, I slept.|Como estava cansado, dormi.']],
+ ['Adição', ['and|e|I like music and dancing.|Gosto de música e de dançar.','also|também|She also speaks French.|Ela também fala francês.','too|também (no fim)|I\'m coming too.|Eu também vou.','besides|além disso|It\'s late. Besides, I\'m tired.|É tarde. Além disso, estou cansado.','as well as|bem como|He plays guitar as well as piano.|Ele toca guitarra, bem como piano.']],
+ ['Condição', ['if|se|If it rains, we stay home.|Se chover, ficamos em casa.','unless|a menos que|Don\'t go unless you want to.|Não vás a menos que queiras.','otherwise|caso contrário|Hurry up, otherwise we\'ll be late.|Despacha-te, caso contrário chegamos tarde.','as long as|desde que|You can go as long as you\'re back by ten.|Podes ir desde que voltes às dez.','in case|para o caso de|Take a coat in case it\'s cold.|Leva um casaco para o caso de estar frio.']],
+ ['Muito usadas', ['just|só / apenas|I just need five minutes.|Só preciso de cinco minutos.','still|ainda|She is still sleeping.|Ela ainda está a dormir.','already|já|I\'ve already eaten.|Já comi.','yet|ainda (não)|I haven\'t finished yet.|Ainda não acabei.','maybe|talvez|Maybe we can meet tomorrow.|Talvez nos encontremos amanhã.','even|até / mesmo|Even kids can do it.|Até as crianças conseguem.']]
+];
+function add(i,a){CATS[i][1]=CATS[i][1].concat(a)}
+add(0,['during|durante|I slept during the movie.|Dormi durante o filme.','whenever|sempre que|Call me whenever you need.|Liga-me sempre que precisares.','meanwhile|entretanto|Meanwhile, I cleaned the house.|Entretanto, limpei a casa.','once|assim que|Once you finish, call me.|Assim que acabares, liga-me.','by the time|na altura em que|By the time I arrived, he had left.|Quando cheguei, ele já tinha saído.']);
+add(1,['even though|embora / mesmo que|Even though he is rich, he is sad.|Embora seja rico, está triste.','despite|apesar de|Despite the rain, we walked.|Apesar da chuva, caminhámos.','instead|em vez disso|I stayed home instead.|Em vez disso, fiquei em casa.','on the other hand|por outro lado|On the other hand, it is cheap.|Por outro lado, é barato.','or|ou|Tea or coffee?|Chá ou café?','nevertheless|ainda assim|It hurt. Nevertheless, he smiled.|Doeu. Ainda assim, sorriu.']);
+add(2,['due to|devido a|The game stopped due to rain.|O jogo parou devido à chuva.','thanks to|graças a|Thanks to you, I passed.|Graças a ti, passei.','as a result|como resultado|As a result, we lost.|Como resultado, perdemos.',"that's why|é por isso que|That's why I'm tired.|É por isso que estou cansado.",'in order to|para (+ verbo)|I study in order to learn.|Estudo para aprender.','so that|para que|Speak slowly so that I understand.|Fala devagar para que eu perceba.']);
+add(3,['moreover|além disso|Moreover, it is free.|Além disso, é grátis.','furthermore|além do mais|Furthermore, it is fast.|Além do mais, é rápido.','in addition|além disso|In addition, we need water.|Além disso, precisamos de água.','plus|e ainda por cima|It is cheap, plus it is good.|É barato e ainda por cima é bom.','not only|não só|Not only is it cheap, but also good.|Não só é barato, como também é bom.']);
+add(4,['provided that|desde que|Go provided that you call me.|Vai desde que me ligues.','even if|mesmo que|I will go even if it rains.|Vou mesmo que chova.','as if|como se|He talks as if he knew.|Fala como se soubesse.','whether|se (ou não)|I wonder whether he is here.|Pergunto-me se ele está aqui.']);
+add(5,['of course|claro|Of course you can.|Claro que podes.','actually|na verdade|Actually, I agree.|Na verdade, concordo.','probably|provavelmente|It will probably rain.|Provavelmente vai chover.','almost|quase|I am almost ready.|Estou quase pronto.','enough|suficiente|It is big enough.|É grande o suficiente.','anyway|de qualquer forma|Anyway, let us go.|De qualquer forma, vamos.']);
+CATS.push(['Ordem',['first|primeiro|First, wash the rice.|Primeiro, lava o arroz.','next|a seguir|Next, add water.|A seguir, junta água.','then|depois|Then wait ten minutes.|Depois espera dez minutos.','finally|finalmente|Finally, serve it.|Finalmente, serve.','for example|por exemplo|Fruit, for example apples.|Fruta, por exemplo maçãs.','such as|como (exemplo)|I like fruit such as apples.|Gosto de fruta como maçãs.','in the end|no fim|In the end, we won.|No fim, ganhámos.']]);
+CATS.push(['Frequência',['always|sempre|I always drink water.|Bebo sempre água.','usually|normalmente|I usually walk to work.|Normalmente vou a pé para o trabalho.','often|muitas vezes|We often eat here.|Comemos aqui muitas vezes.','sometimes|às vezes|Sometimes I cook.|Às vezes cozinho.','rarely|raramente|He rarely calls.|Ele raramente liga.','never|nunca|I never smoke.|Nunca fumo.']]);
+CATS.push(['Perguntas',['who|quem|Who is that?|Quem é aquele?','what|o quê / qual|What is your name?|Como te chamas?','where|onde|Where do you live?|Onde vives?','when|quando|When is the party?|Quando é a festa?','why|porquê|Why are you late?|Porque chegaste tarde?','how|como|How are you?|Como estás?','which|qual / quais|Which one do you want?|Qual queres?','whose|de quem|Whose bag is this?|De quem é esta mala?']]);
+CATS.push(['Preposições',['in|em|I live in Lisbon.|Vivo em Lisboa.','on|em / sobre|The book is on the table.|O livro está em cima da mesa.','at|em / às|Meet me at five.|Encontramo-nos às cinco.','to|para / a|I go to school.|Vou à escola.','for|para / há|This is for you.|Isto é para ti.','with|com|Come with me.|Anda comigo.','without|sem|Tea without sugar.|Chá sem açúcar.','about|sobre|Tell me about it.|Fala-me disso.','from|de|I am from Portugal.|Sou de Portugal.','by|por / de (transporte)|I go by bus.|Vou de autocarro.']]);
+var QZ = [
+ ['I was cooking ___ she was setting the table.',['while','because','unless','so'],0,'Eu cozinhava enquanto ela punha a mesa.','while = enquanto: duas ações ao mesmo tempo.'],
+ ['I took an umbrella ___ it was raining.',['although','because','until','while'],1,'Levei guarda-chuva porque estava a chover.','because explica a causa.'],
+ ['He studied hard, ___ he passed the exam.',['but','unless','so','while'],2,'Estudou muito, por isso passou no exame.','so = por isso: mostra a consequência.'],
+ ['___ it was cold, we went to the beach.',['Because','Although','Unless','Until'],1,'Embora estivesse frio, fomos à praia.','although liga ideias que contrastam.'],
+ ['Wait here ___ I come back.',['until','although','so','but'],0,'Espera aqui até eu voltar.','until = até (que).'],
+ ['You can\'t enter ___ you have a ticket.',['while','unless','so','although'],1,'Não podes entrar a menos que tenhas bilhete.','unless = a menos que.'],
+ ['I don\'t like coffee. ___, I drink it every morning.',['Because','Unless','While','However'],3,'Não gosto de café. No entanto, bebo-o todas as manhãs.','however = no entanto.'],
+ ['___ you hurry, you\'ll miss the bus.',['If','Although','While','Until'],0,'Se não te despachares, perdes o autocarro.','if = se: abre uma condição.'],
+ ['I\'ll call you ___ I arrive.',['unless','as soon as','although','because'],1,'Ligo-te assim que chegar.','as soon as = assim que.'],
+ ['She lives in Lisbon, ___ her brother lives in Porto.',['whereas','because','until','unless'],0,'Ela vive em Lisboa, ao passo que o irmão vive no Porto.','whereas compara duas situações.']
+];
+
+/* ---------- controlo segmentado ---------- */
+function seg(el, cb) {
+  var items = [].slice.call(el.querySelectorAll('button,a')), ind = el.querySelector('.ind');
+  function set(i) {
+    items.forEach(function (b, j) { b.classList.toggle('on', j === i); });
+    var b = items[i]; if (!b) return;
+    ind.style.width = b.offsetWidth + 'px'; ind.style.transform = 'translateX(' + b.offsetLeft + 'px)';
+    el._i = i;
+  }
+  items.forEach(function (b, i) { b.addEventListener('click', function () { set(i); if (cb) cb(i); }); });
+  addEventListener('resize', function () { set(el._i || 0); });
+  set(0); return set;
+}
+
+/* ---------- palavras ---------- */
+var ICON = '<svg class="ic" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7"/></svg>';
+var catsEl = document.getElementById('cats'), grid = document.getElementById('grid');
+catsEl.insertAdjacentHTML('beforeend', CATS.map(function (c) { return '<button>' + c[0] + '</button>'; }).join(''));
+function show(i) {
+  grid.innerHTML = CATS[i][1].map(function (s) {
+    var p = s.split('|'), re = new RegExp('\\b' + p[0] + '\\b', 'i');
+    return '<article class="glass card"><div class="row"><span class="tag">' + CATS[i][0] + '</span><button class="spk" data-s="' + p[0] + '. ' + p[2].replace(/"/g, '') + '" aria-label="Ouvir ' + p[0] + '">' + ICON + '</button></div>' +
+      '<div class="w">' + p[0] + '</div><div class="pt">' + p[1] + '</div><div class="ex">' + p[2].replace(re, '<b>$&</b>') + '<small>' + p[3] + '</small></div></article>';
+  }).join('');
+  LG.init(grid);
+}
+grid.addEventListener('click', function (e) {
+  var b = e.target.closest('.spk'); if (!b || !window.speechSynthesis) return;
+  speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(b.dataset.s); u.lang = 'en-GB'; u.rate = .9; speechSynthesis.speak(u);
+});
+seg(catsEl, show); show(0);
+
+/* ---------- quiz ---------- */
+var qp = document.getElementById('qp'), qi = 0, score = 0, done = false;
+function render() {
+  if (qi >= QZ.length) {
+    var m = score >= 9 ? 'Ding! Dominas os conectores.' : score >= 6 ? 'Bom trabalho. Revê as palavras que falharam.' : 'Continua a praticar: volta às palavras e tenta de novo.';
+    qp.innerHTML = '<div class="end"><div class="n">' + score + '/' + QZ.length + '</div><p>' + m + '</p><button class="glass btn t-o" style="padding:16px 32px;font-size:18px;font-weight:700" data-a="again">Tentar de novo</button></div>';
+  } else {
+    var q = QZ[qi]; done = false;
+    qp.innerHTML = '<div class="top"><span>Pergunta ' + (qi + 1) + ' de ' + QZ.length + '</span><span class="glass">' + score + ' certas</span></div>' +
+      '<div class="bar"><i style="width:' + (qi / QZ.length * 100) + '%"></i></div>' +
+      '<div class="q">' + q[0].replace('___', '<span class="blank">&nbsp;</span>') + '</div><div class="hint">' + q[3] + '</div>' +
+      '<div class="opts">' + q[1].map(function (o, i) { return '<button class="glass btn opt" data-i="' + i + '">' + o + '</button>'; }).join('') + '</div><div class="fb" id="fb"></div>';
+  }
+  LG.init(qp);
+}
+qp.addEventListener('click', function (e) {
+  var o = e.target.closest('.opt'), a = e.target.closest('[data-a]');
+  if (a) { if (a.dataset.a === 'again') { qi = 0; score = 0; } else qi++; render(); return; }
+  if (!o || done) return; done = true;
+  var q = QZ[qi], pick = +o.dataset.i, ok = pick === q[2];
+  if (ok) score++;
+  [].forEach.call(qp.querySelectorAll('.opt'), function (b, i) {
+    b.disabled = true; if (i === q[2]) b.classList.add('ok'); else if (i === pick) b.classList.add('no');
+  });
+  qp.querySelector('.blank').textContent = q[1][q[2]];
+  document.getElementById('fb').innerHTML = '<span><b>' + (ok ? 'Certo!' : 'Quase.') + '</b> ' + q[4] + '</span><button class="glass btn t-o" data-a="next">' + (qi === QZ.length - 1 ? 'Ver resultado' : 'Seguinte') + '</button>';
+  LG.init(qp);
+});
+render();
+
+/* ---------- gramática ---------- */
+var TS=['Present simple|Hábitos e factos|sujeito + verbo (he/she/it + s)|She works every day.|Ela trabalha todos os dias.','Present continuous|A acontecer agora|am / is / are + verbo-ing|I am eating now.|Estou a comer agora.','Past simple|Passado terminado|verbo + ed (ou forma irregular)|We visited Porto yesterday.|Visitámos o Porto ontem.','Past continuous|Ação em curso no passado|was / were + verbo-ing|I was sleeping at ten.|Eu estava a dormir às dez.','Present perfect|Passado com ligação ao presente|have / has + particípio|I have lived here for years.|Vivo aqui há anos.','Future with will|Decisões e previsões|will + verbo|I will help you.|Eu ajudo-te.','Going to|Planos e intenções|am / is / are going to + verbo|We are going to travel.|Vamos viajar.','Do / does / did|Perguntas e negativas|do / does / did + sujeito + verbo|Do you like tea? I don\'t.|Gostas de chá? Eu não.'];
+var IV='be|was / were|been|ser / estar;have|had|had|ter;do|did|done|fazer;go|went|gone|ir;come|came|come|vir;see|saw|seen|ver;eat|ate|eaten|comer;drink|drank|drunk|beber;take|took|taken|levar / tomar;give|gave|given|dar;get|got|got|obter / ficar;make|made|made|fazer / criar;say|said|said|dizer;tell|told|told|contar;know|knew|known|saber / conhecer;think|thought|thought|pensar;buy|bought|bought|comprar;bring|brought|brought|trazer;write|wrote|written|escrever;speak|spoke|spoken|falar;read|read|read|ler;run|ran|run|correr;sleep|slept|slept|dormir;leave|left|left|sair / deixar;find|found|found|encontrar;begin|began|begun|começar;swim|swam|swum|nadar;sing|sang|sung|cantar;forget|forgot|forgotten|esquecer;meet|met|met|encontrar-se;pay|paid|paid|pagar;drive|drove|driven|conduzir;put|put|put|pôr';
+var gTabs=document.getElementById('gtabs'),gBox=document.getElementById('gbox');
+function gshow(i){
+  if(i===0) gBox.innerHTML='<div class="grid">'+TS.map(function(t){var p=t.split('|');
+    return '<article class="glass card"><div class="w" style="font-size:26px;margin:0">'+p[0]+'</div><div class="pt">'+p[1]+'</div><div class="ex"><b>'+p[2]+'</b><br>'+p[3]+'<small>'+p[4]+'</small></div></article>';}).join('')+'</div>';
+  else gBox.innerHTML='<div class="tbl"><div class="tr h"><span>Infinitivo</span><span>Passado</span><span>Particípio</span><span>Português</span></div>'+IV.split(';').map(function(v){var p=v.split('|');
+    return '<div class="tr"><b>'+p[0]+'</b><span>'+p[1]+'</span><span>'+p[2]+'</span><span>'+p[3]+'</span></div>';}).join('')+'</div>';
+  LG.init(gBox);
+}
+seg(gTabs,gshow);gshow(0);
+
+/* ---------- navegação ---------- */
+var navEl = document.getElementById('nav'), setNav = seg(navEl), secs = ['inicio', 'palavras', 'gramatica', 'quiz'].map(function (id) { return document.getElementById(id); });
+function spy() { var k = 0; secs.forEach(function (s, i) { if (s.getBoundingClientRect().top < innerHeight * .4) k = i; }); if (navEl._i !== k) setNav(k); }
+addEventListener('scroll', spy, { passive: true });
+LG.init(document);
+</script>
+</body>
+</html>
